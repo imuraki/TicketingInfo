@@ -13,5 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cd auth && docker build -t akhilc/auth .
-      - run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-      - run: docker push akhilc/auth
+      - run: echo Hello world $DOCKER_USERNAME $DOCKER_PASSWORD!
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
